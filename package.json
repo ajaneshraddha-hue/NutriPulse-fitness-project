@@ -1,0 +1,22 @@
+{
+  "name": "nutripulse-fitness-project",
+  "version": "1.0.0",
+  "description": "NutriPulse AI - Intelligent Nutrition Engine & Multi-Tenant WhatsApp Coaching Platform",
+  "main": "backend/server.js",
+  "type": "module",
+  "scripts": {
+    "build": "npm install --prefix frontend && npm run build --prefix frontend",
+    "start": "node backend/server.js",
+    "dev:frontend": "npm run dev --prefix frontend",
+    "dev:backend": "node backend/server.js"
+  },
+  "keywords": [
+    "nutrition",
+    "fitness",
+    "ai",
+    "whatsapp",
+    "health"
+  ],
+  "author": "NutriPulse",
+  "license": "MIT"
+}

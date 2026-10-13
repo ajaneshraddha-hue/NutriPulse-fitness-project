@@ -1,7 +1,14 @@
 import http from 'node:http';
 import url from 'node:url';
 import crypto from 'node:crypto';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { db, initDatabase } from './db.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const FRONTEND_DIST = path.join(__dirname, '../frontend/dist');
 
 // Initialize SQLite database
 initDatabase();
@@ -758,6 +765,38 @@ const server = http.createServer(async (req, res) => {
         whatsappUrl,
         reply
       });
+    }
+
+    // Serve static files from frontend/dist if built (for Render production deployment)
+    if (!pathName.startsWith('/api') && fs.existsSync(FRONTEND_DIST)) {
+      let filePath = path.join(FRONTEND_DIST, pathName === '/' ? 'index.html' : pathName);
+      if (!fs.existsSync(filePath) || fs.statSync(filePath).isDirectory()) {
+        filePath = path.join(FRONTEND_DIST, 'index.html'); // SPA fallback
+      }
+      
+      const ext = path.extname(filePath).toLowerCase();
+      const mimeTypes = {
+        '.html': 'text/html',
+        '.js': 'application/javascript',
+        '.css': 'text/css',
+        '.json': 'application/json',
+        '.png': 'image/png',
+        '.jpg': 'image/jpeg',
+        '.jpeg': 'image/jpeg',
+        '.svg': 'image/svg+xml',
+        '.ico': 'image/x-icon',
+        '.woff': 'font/woff',
+        '.woff2': 'font/woff2',
+        '.ttf': 'font/ttf'
+      };
+      
+      const contentType = mimeTypes[ext] || 'application/octet-stream';
+      res.writeHead(200, {
+        'Content-Type': contentType,
+        'Cache-Control': ext === '.html' ? 'no-cache' : 'public, max-age=31536000'
+      });
+      fs.createReadStream(filePath).pipe(res);
+      return;
     }
 
     sendJson(res, 404, { error: 'Route not found' });

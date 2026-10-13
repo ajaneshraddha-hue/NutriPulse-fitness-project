@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: nutripulse-fitness-app
+    env: node
+    plan: free
+    region: oregon
+    buildCommand: npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: 24.16.0
+      - key: PORT
+        value: 10000
