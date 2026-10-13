@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>NutriPulse AI - Complete System & Workflow Documentation</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+    
+    :root {
+      --primary: #059669;
+      --primary-light: #ecfdf5;
+      --slate-900: #0f172a;
+      --slate-700: #334155;
+      --slate-500: #64748b;
+      --slate-200: #e2e8f0;
+      --slate-100: #f1f5f9;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      line-height: 1.6;
+      color: var(--slate-900);
+      background: #f8fafc;
+      padding: 40px 20px;
+      margin: 0;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 60px;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    }
+    h1 {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--slate-900);
+      margin-top: 0;
+      border-bottom: 3px solid var(--primary);
+      padding-bottom: 12px;
+    }
+    h2 {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--slate-900);
+      margin-top: 36px;
+      margin-bottom: 12px;
+      border-left: 4px solid var(--primary);
+      padding-left: 12px;
+    }
+    h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--slate-700);
+      margin-top: 24px;
+    }
+    p, li {
+      font-size: 14px;
+      color: var(--slate-700);
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      background: var(--primary-light);
+      color: var(--primary);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 13px;
+    }
+    th, td {
+      border: 1px solid var(--slate-200);
+      padding: 10px 14px;
+      text-align: left;
+    }
+    th {
+      background: var(--slate-100);
+      font-weight: 700;
+      color: var(--slate-900);
+    }
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 16px;
+      border-radius: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      overflow-x: auto;
+    }
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      background: var(--slate-100);
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-size: 12px;
+      color: #0f766e;
+    }
+    pre code {
+      background: transparent;
+      color: inherit;
+      padding: 0;
+    }
+    .callout {
+      background: var(--primary-light);
+      border: 1px solid #a7f3d0;
+      border-radius: 12px;
+      padding: 16px;
+      margin: 20px 0;
+      font-size: 13px;
+    }
+    .callout strong {
+      color: #047857;
+    }
+    .print-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #059669;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 13px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(5,150,105,0.3);
+    }
+    .print-btn:hover { background: #047857; }
+    @media print {
+      body { background: white; padding: 0; }
+      .container { box-shadow: none; padding: 20px; max-width: 100%; }
+      .print-btn { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <button class="print-btn" onclick="window.print()">🖨️ Export / Print to PDF</button>
+
+  <div class="container">
+    <span class="badge">Official Product Specification & Architecture</span>
+    <h1>NutriPulse AI: End-to-End System & Workflow Documentation</h1>
+    <p>Comprehensive technical and user flow specification covering authentication, multi-tenant partner isolation, clinical nutrition calculations, Indian meal planning, AI food scanning, and dynamic WhatsApp AI coach deep-linking.</p>
+
+    <h2>1. Executive Summary & Core Loop</h2>
+    <p>NutriPulse AI is an adaptive fitness and nutrition platform built to satisfy the uploaded <strong>FitLife AI specification</strong>. Instead of static diet plans, the system operates on an active feedback loop:</p>
+    <div class="callout">
+      <strong>Core Loop:</strong> Member Baseline &rarr; Mifflin-St Jeor TDEE &rarr; Daily Meal Generation &rarr; Food & Water Logging &rarr; AI Meal Swaps &rarr; Weekly Behavioral Adjustment &rarr; WhatsApp AI Accountability.
+    </div>
+
+    <h2>2. Complete User Flows (From Login to Feature Execution)</h2>
+
+    <h3>Flow 1: Partner & Gym Owner Registration (Admin Gateway)</h3>
+    <ul>
+      <li><strong>Access:</strong> Admin clicks <code>🔐 Partner Admin Gateway</code> in the footer.</li>
+      <li><strong>Information Stored:</strong> Firm Name, Brand Logo, WhatsApp Phone Number, Physical Address, City, Admin Email, Generated Password, Custom AI Bot Name, and WhatsApp Welcome Message.</li>
+      <li><strong>Database Persistence:</strong> Saved directly to the SQLite <code>admins</code> table.</li>
+      <li><strong>Session Security:</strong> Issues an isolated admin session token (<code>ADM_TOKEN_*</code>).</li>
+    </ul>
+
+    <h3>Flow 2: Member (Customer) 3-Step Guided Registration</h3>
+    <ul>
+      <li><strong>Step 1 (Account & Hub):</strong> Full Name, Email, Password, and selects their preferred Partner Fitness Club.</li>
+      <li><strong>Step 2 (Body Baseline):</strong> Age, Biological Sex, Height (cm), Weight (kg), Target Weight (kg), Waist (cm), Activity Level, Weekly Workouts.</li>
+      <li><strong>Step 3 (Diet & Safety Screening):</strong> Primary Goal (Fat-loss, Muscle-gain, Maintenance), Diet Type (Veg, Non-veg, Jain, Vegan), Regional Cuisine (North/South Indian), Allergies, and Clinical Screening flags (Diabetes, BP, Thyroid).</li>
+    </ul>
+
+    <h3>Flow 3: Clinical Nutrition Calculation Layer</h3>
+    <p>Calculates individualized energy and macro targets based on clinical formulas:</p>
+    <ul>
+      <li><strong>BMR (Mifflin-St Jeor):</strong>
+        <br><code>Male: (10 &times; weight) + (6.25 &times; height) - (5 &times; age) + 5</code>
+        <br><code>Female: (10 &times; weight) + (6.25 &times; height) - (5 &times; age) - 161</code>
+      </li>
+      <li><strong>TDEE:</strong> Multiplies BMR by activity factor (1.2 Desk Job to 1.725 Athlete).</li>
+      <li><strong>Calorie Budget:</strong> <code>TDEE - 450 kcal</code> for Fat-loss (minimum 1,300 kcal) or <code>TDEE + 350 kcal</code> for Hypertrophy.</li>
+      <li><strong>Protein Target:</strong> 1.8g to 2.0g per kg of bodyweight.</li>
+      <li><strong>Hydration Target:</strong> 35 ml per kg of bodyweight.</li>
+    </ul>
+
+    <h3>Flow 4: Today's Dashboard & Net Calorie Math</h3>
+    <p>Features an animated circular Calorie Budget Wheel:</p>
+    <div class="callout">
+      <strong>Net Calorie Equation:</strong><br>
+      <code>Net Calories = Calories Consumed - Calories Burned</code><br>
+      When a member logs a 45-minute workout, their net calorie allowance expands safely!
+    </div>
+
+    <h3>Flow 5: Indian Meal Plan & AI Swap Engine</h3>
+    <p>Provides 5 daily meal slots featuring standardized Indian food items (Moong Dal Chilla, Idli Sambar, Ragi Dosa, Dal Tadka with Phulkas, Paneer Bhurji, Curd Rice, Sprouts, Makhana). Clicking <strong>"AI Swap"</strong> queries dishes with equivalent calories (&plusmn;100 kcal) so members never feel trapped in one menu.</p>
+
+    <h3>Flow 6: AI Food Scanner (Photo Recognition)</h3>
+    <p>Simulates camera photo scanning of Indian plates. Detects food components, displays an AI confidence rating (e.g. <em>94% High</em>), provides portion adjustment sliders (0.5&times; to 2.0&times;), and logs directly to daily intake.</p>
+
+    <h3>Flow 7: Workout & Calorie Burn Tracker</h3>
+    <p>Members log exercise sessions (Strength Training, HIIT, Running, Cycling, Walking, Yoga). Calorie burn is calculated automatically and credited to the daily net calorie budget.</p>
+
+    <h3>Flow 8: High-Protein Indian Recipe Guides</h3>
+    <p>Step-by-step cooking guides for Moong Dal Chilla, Paneer Bhurji, Idli Sambar, Dal Tadka, and Sprouts Chaat, including ingredients with measures, prep time, cook time, and chef's nutrition tips.</p>
+
+    <h3>Flow 9: Smart Weekly Grocery & Pantry Checklist</h3>
+    <p>Generates an interactive shopping list categorized into Pulses & Staples, Fresh Proteins & Dairy, Whole Grains, and Produce with check-off checkboxes.</p>
+
+    <h3>Flow 10: Clinical BMI & Target Timeline Calculator</h3>
+    <p>Displays live BMI classification (Underweight, Normal, Overweight, Obese), resting BMR, and predicts the exact timeline (in weeks) to reach the target weight based on sustainable 0.5 kg/week progress.</p>
+
+    <h3>Flow 11: Dynamic WhatsApp AI Agent Integration</h3>
+    <ul>
+      <li>Pulsing green launcher widget positioned at the bottom right.</li>
+      <li>Dynamically bound to the <strong>exact WhatsApp phone number</strong> registered by the member's fitness partner club.</li>
+      <li>One-click deep link: <code>https://wa.me/{admin_phone}?text={user_context}</code>.</li>
+      <li>In-app interactive AI coach answering questions on workouts, meal swaps, and restaurant options.</li>
+    </ul>
+
+    <h2>3. Database Schema Overview (SQLite)</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Table Name</th>
+          <th>Key Columns</th>
+          <th>Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>admins</code></td>
+          <td>id, email, password, gym_name, logo_url, whatsapp_number, address, city, ai_coach_name</td>
+          <td>Enterprise partner hubs & WhatsApp config</td>
+        </tr>
+        <tr>
+          <td><code>customers</code></td>
+          <td>id, gym_id, email, password, name, age, sex, height, current_weight, target_weight, goal, diet_type</td>
+          <td>Member accounts & body baselines</td>
+        </tr>
+        <tr>
+          <td><code>nutrition_profiles</code></td>
+          <td>customer_id, calorie_target, protein_target, carb_target, fat_target, water_target</td>
+          <td>Clinical nutrition targets</td>
+        </tr>
+        <tr>
+          <td><code>food_items</code></td>
+          <td>id, name, cuisine, meal_type, diet_type, serving_size, calories, protein, carbs, fat</td>
+          <td>Indian regional food database (50+ items)</td>
+        </tr>
+        <tr>
+          <td><code>food_logs</code></td>
+          <td>id, customer_id, food_name, meal_type, servings, calories, protein, logged_date</td>
+          <td>Daily meal intake tracking</td>
+        </tr>
+        <tr>
+          <td><code>water_logs</code></td>
+          <td>id, customer_id, amount_ml, logged_date</td>
+          <td>Hydration tracking</td>
+        </tr>
+        <tr>
+          <td><code>workouts</code></td>
+          <td>id, customer_id, workout_type, duration_minutes, calories_burned, logged_date</td>
+          <td>Exercise & burned calorie tracking</td>
+        </tr>
+        <tr>
+          <td><code>recipes</code></td>
+          <td>id, food_name, prep_time, cook_time, ingredients_json, instructions_json, chef_tip</td>
+          <td>High-protein cooking recipes</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>4. REST API Endpoints</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Endpoint</th>
+          <th>Method</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>/api/customer/register</code></td><td>POST</td><td>3-step member signup & TDEE calculation</td></tr>
+        <tr><td><code>/api/customer/login</code></td><td>POST</td><td>Member authentication</td></tr>
+        <tr><td><code>/api/customer/profile</code></td><td>PUT</td><td>Recalculate nutrition targets & update baseline</td></tr>
+        <tr><td><code>/api/nutrition/today</code></td><td>GET</td><td>Fetch today's calorie budget, meals, & water logs</td></tr>
+        <tr><td><code>/api/nutrition/meal/swap</code></td><td>POST</td><td>AI Meal Swap Engine (3 comparable alternatives)</td></tr>
+        <tr><td><code>/api/workout/log</code></td><td>POST</td><td>Log exercise session & calculate burned calories</td></tr>
+        <tr><td><code>/api/recipes</code></td><td>GET</td><td>Fetch healthy Indian recipes with cooking steps</td></tr>
+        <tr><td><code>/api/grocery/list</code></td><td>GET</td><td>Generate weekly shopping checklist</td></tr>
+        <tr><td><code>/api/admin/login</code></td><td>POST</td><td>Secure enterprise partner login</td></tr>
+        <tr><td><code>/api/admin/register</code></td><td>POST</td><td>Register partner hub with WhatsApp number</td></tr>
+        <tr><td><code>/api/ai/coach/chat</code></td><td>POST</td><td>AI Coach conversation & WhatsApp link generator</td></tr>
+      </tbody>
+    </table>
+
+    <h2>5. Quick Access Credentials</h2>
+    <ul>
+      <li><strong>Member Sign In:</strong> <code>rahul.sharma@example.com</code> / <code>user123</code></li>
+      <li><strong>Partner Admin Sign In:</strong> <code>apex@nutripulse.in</code> / <code>admin123</code></li>
+      <li><strong>Local URLs:</strong> Web App: <code>http://localhost:5173</code> | API: <code>http://localhost:5000</code></li>
+    </ul>
+  </div>
+</body>
+</html>
